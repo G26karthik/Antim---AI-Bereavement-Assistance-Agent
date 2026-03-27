@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Antim — AI Bereavement Assistance</title>
+  <meta name="description" content="Compassionate AI-powered guidance through the legal and procedural aspects of bereavement in India." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- ============ NAVBAR ============ -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="#" class="logo">
+        <svg class="logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="16" cy="16" r="15" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M16 6C16 6 8 14 8 20a8 8 0 0 0 16 0c0-6-8-14-8-14Z" fill="currentColor" opacity="0.15" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+        </svg>
+        <span class="logo-text">Antim</span>
+      </a>
+      <div class="nav-actions">
+        <button class="btn-icon" id="settingsBtn" title="Settings" aria-label="Settings">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="hero-eyebrow">AI-Powered Bereavement Guidance</p>
+      <h1 class="hero-title">Navigating loss,<br/>with compassion &amp; clarity</h1>
+      <p class="hero-subtitle">Antim provides step-by-step legal and procedural guidance during one of life's most difficult moments. Simply share the details below, and our AI assistant will prepare a personalised action plan for you.</p>
+      <a href="#form-section" class="btn btn-primary hero-cta">
+        Get Started
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+      </a>
+    </div>
+  </header>
+
+  <!-- ============ TRUST BAR ============ -->
+  <section class="trust-bar">
+    <div class="trust-inner">
+      <div class="trust-item">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg>
+        <span>Private &amp; Secure</span>
+      </div>
+      <div class="trust-item">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+        <span>AI-Guided Assistance</span>
+      </div>
+      <div class="trust-item">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+        <span>Personalised Guidance</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FORM SECTION ============ -->
+  <main class="form-section" id="form-section">
+    <div class="form-container">
+      <div class="form-header">
+        <h2 class="form-title">Tell us about the situation</h2>
+        <p class="form-desc">All information is processed securely and is never stored. Please fill in the details below so our AI can prepare the most relevant guidance for you.</p>
+      </div>
+
+      <!-- Token Warning Banner -->
+      <div class="alert alert-warning" id="tokenAlert" style="display:none;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+        <div>
+          <strong>API Key Required</strong>
+          <p>Please configure your Supervity API key in <button class="link-btn" id="openSettingsFromAlert">Settings</button> to use this service.</p>
+        </div>
+      </div>
+
+      <form id="workflowForm" class="workflow-form" novalidate>
+        <!-- Row 1 -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="deceased_name">
+              <span class="label-text">Name of the Deceased</span>
+              <span class="label-required">*</span>
+            </label>
+            <input type="text" id="deceased_name" name="deceased_name" placeholder="Full legal name" required />
+          </div>
+          <div class="form-group">
+            <label for="location">
+              <span class="label-text">Location</span>
+              <span class="label-required">*</span>
+            </label>
+            <input type="text" id="location" name="location" placeholder="City, State" required />
+          </div>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="has_will">
+              <span class="label-text">Is there a Will?</span>
+              <span class="label-required">*</span>
+            </label>
+            <div class="select-wrapper">
+              <select id="has_will" name="has_will" required>
+                <option value="" disabled selected>Select an option</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+                <option value="Not Sure">Not Sure</option>
+              </select>
+              <svg class="select-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="user_email">
+              <span class="label-text">Your Email</span>
+              <span class="label-required">*</span>
+            </label>
+            <input type="email" id="user_email" name="user_email" placeholder="you@example.com" required />
+          </div>
+        </div>
+
+        <!-- Assets -->
+        <div class="form-group form-group-full">
+          <label>
+            <span class="label-text">Types of Assets</span>
+          </label>
+          <div class="checkbox-grid">
+            <label class="checkbox-card">
+              <input type="checkbox" name="assets" value="Property" />
+              <div class="checkbox-card-inner">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9.5 12 4l9 5.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5Z"/><path d="M9 21V12h6v9"/></svg>
+                <span>Property</span>
+              </div>
+            </label>
+            <label class="checkbox-card">
+              <input type="checkbox" name="assets" value="Bank Accounts" />
+              <div class="checkbox-card-inner">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+                <span>Bank Accounts</span>
+              </div>
+            </label>
+            <label class="checkbox-card">
+              <input type="checkbox" name="assets" value="Investments" />
+              <div class="checkbox-card-inner">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                <span>Investments</span>
+              </div>
+            </label>
+            <label class="checkbox-card">
+              <input type="checkbox" name="assets" value="Vehicles" />
+              <div class="checkbox-card-inner">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 17h14M5 17a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1l2-3h8l2 3h1a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2M5 17a2 2 0 1 0 4 0M15 17a2 2 0 1 0 4 0"/></svg>
+                <span>Vehicles</span>
+              </div>
+            </label>
+            <label class="checkbox-card">
+              <input type="checkbox" name="assets" value="Jewelry" />
+              <div class="checkbox-card-inner">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 3h12l4 6-10 13L2 9Z"/><path d="M2 9h20M12 22 7.5 9 10 3M12 22l4.5-13L14 3"/></svg>
+                <span>Jewelry</span>
+              </div>
+            </label>
+            <label class="checkbox-card">
+              <input type="checkbox" name="assets" value="Insurance" />
+              <div class="checkbox-card-inner">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>
+                <span>Insurance</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Legal Heirs -->
+        <div class="form-group form-group-full">
+          <label for="legal_heirs">
+            <span class="label-text">Legal Heirs</span>
+            <span class="label-required">*</span>
+          </label>
+          <textarea id="legal_heirs" name="legal_heirs" placeholder="List each heir with their relationship (e.g., Priya Sharma — Spouse, Rahul Sharma — Son)" rows="3" required></textarea>
+        </div>
+
+        <!-- User Name -->
+        <div class="form-row">
+          <div class="form-group">
+            <label for="user_name">
+              <span class="label-text">Your Name</span>
+              <span class="label-required">*</span>
+            </label>
+            <input type="text" id="user_name" name="user_name" placeholder="Your full name" required />
+          </div>
+          <div class="form-group" style="display:flex;align-items:flex-end;">
+            <button type="submit" class="btn btn-primary btn-submit" id="submitBtn">
+              <span class="btn-label">Generate Guidance</span>
+              <svg class="btn-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              <span class="btn-spinner" style="display:none;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round"><animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="0.75s" repeatCount="indefinite"/></path></svg>
+              </span>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <!-- ============ RESULT SECTION ============ -->
+  <section class="result-section" id="resultSection" style="display:none;">
+    <div class="result-container">
+      <div class="result-header">
+        <div class="result-title-group">
+          <h2 class="result-title">Your Personalised Guidance</h2>
+          <span class="result-badge" id="resultBadge">
+            <span class="badge-dot"></span>
+            <span class="badge-text">Processing</span>
+          </span>
+        </div>
+        <button class="btn btn-outline btn-sm" id="copyBtn" title="Copy to clipboard" style="display:none;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy
+        </button>
+      </div>
+      <div class="result-body" id="resultBody">
+        <div class="result-placeholder">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <p>The AI agent is working on your request. This may take a moment…</p>
+        </div>
+        <div class="result-content" id="resultContent"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p>&copy; 2026 Antim. Built with care for those navigating difficult times.</p>
+      <p class="footer-note">This tool provides general guidance and is not a substitute for professional legal advice.</p>
+    </div>
+  </footer>
+
+  <!-- ============ SETTINGS MODAL ============ -->
+  <div class="modal-overlay" id="settingsModal">
+    <div class="modal" role="dialog" aria-labelledby="settingsTitle">
+      <div class="modal-header">
+        <h3 id="settingsTitle">Settings</h3>
+        <button class="btn-icon modal-close" id="closeSettings" aria-label="Close">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="apiToken">
+            <span class="label-text">Supervity API Token</span>
+          </label>
+          <textarea id="apiToken" rows="4" placeholder="Paste your Bearer token here…" spellcheck="false"></textarea>
+          <p class="field-hint">Your token is stored locally in your browser and is never sent anywhere except the Supervity API.</p>
+        </div>
+        <div class="form-group">
+          <label for="workflowId">
+            <span class="label-text">Workflow ID</span>
+          </label>
+          <input type="text" id="workflowId" placeholder="e.g. 019d2e5a-5544-7000-ad28-9e75793cecd9" spellcheck="false" />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="cancelSettings">Cancel</button>
+        <button class="btn btn-primary" id="saveSettings">Save Settings</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
